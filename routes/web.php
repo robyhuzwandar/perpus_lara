@@ -18,8 +18,9 @@ Route::get('/admin', function () {
 Route::get('/buku/create', 'BukuController@create')->name('buku.create');
 Route::post('/buku/create', 'BukuController@store')->name('buku.store');
 Route::get('/buku/view', 'BukuController@view')->name('buku.view');
-
-//Route::delete('/buku/{kodeBuku}/delete', 'BukuController@destroy')->name('buku.destroy');
 Route::match(['get', 'post', 'delete'],'/buku/{kodeBuku}/delete', 'BukuController@destroy')->name('buku.destroy');
 Route::get('/buku/{kodeBuku}/edit', 'BukuController@edit')->name('buku.edit');
 Route::patch('/buku/{kodeBuku}/edit', 'BukuController@update')->name('buku.update');
+
+Route::get('/pemrograman/create', 'PemrogramanController@create')->name('pemrograman.create');
+Route::post('/pemrograman/create', 'PemrogramanController@store')->name('pemrograman.store');

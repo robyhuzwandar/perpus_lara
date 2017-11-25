@@ -6,9 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pemrograman extends Model
 {
-  public $table = 'pemrograman';
+    public $timestamps = false;
+    public $table = 'pemrograman';
 
-  public function Buku(){
-      return $this->belongsTo('App\Buku');
-  }
+    public $fillable = ['nama'];
+
+    public function Buku()
+    {
+        return $this->belongsTo('App\Buku');
+    }
 }

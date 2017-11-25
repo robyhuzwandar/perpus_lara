@@ -33,6 +33,7 @@ class BukuController extends Controller
 
         request()->gambar->move(public_path('buku_gambar'), $gambar); //memindahkan gambar kefolder
 
+
         Buku::create([
             'kodeBuku' => request('kodeBuku'),
             'judul' => request('judul'),
@@ -74,25 +75,48 @@ class BukuController extends Controller
         return view('buku.edit', compact('buku', 'pemrogramans', 'platforms'));
     }
 
-    public function update($kodeBuku)
+    public function update(Request $request, $kodeBuku)
     {
         $buku = Buku::find($kodeBuku);
+        $gambarF = $request->gambar; //mengambil nama gambar di form
 
-        $gambar = time() . '.' . request()->gambar->getClientOriginalExtension(); //namagambar
-        request()->gambar->move(public_path('buku_gambar'), $gambar); //memindahkan gambar kefolder
+        if (!empty($gambarF)) {
+            $gambar = time() . '.' . $gambarF->getClientOriginalExtension(); //membuat nama gambar baru
+            request()->gambar->move(public_path('buku_gambar'), $gambar); //memindahkan gambar kefolder
+            //delete gambar
+            $bk = Buku::where('kodeBuku', $buku->kodeBuku)->first();
+            $file_path = public_path() . '/buku_gambar/' . $bk->gambar;
+            unlink($file_path);
 
-        $buku->update([
-            'kodeBuku' => request('kodeBuku'),
-            'judul' => request('judul'),
-            'penulis' => request('penulis'),
-            'penerbit' => request('penerbit'),
-            'tahunTerbit' => request('tahunTerbit'),
-            'gambar' => $gambar,
-            'kodeRak' => request('kodeRak'),
-            'kodeKolom' => request('kodeKolom'),
-            'platform_id' => request('platform_id'),
-            'pemrograman_id' => request('pemrograman_id'),
-            'stok' => request('stok')
-        ]);
+            $buku->update([
+                'kodeBuku' => request('kodeBuku'),
+                'judul' => request('judul'),
+                'penulis' => request('penulis'),
+                'penerbit' => request('penerbit'),
+                'tahunTerbit' => request('tahunTerbit'),
+                'gambar' => $gambar,
+                'kodeRak' => request('kodeRak'),
+                'kodeKolom' => request('kodeKolom'),
+                'platform_id' => request('platform_id'),
+                'pemrograman_id' => request('pemrograman_id'),
+                'stok' => request('stok')
+            ]);
+
+        } else {
+            $buku->update([
+                'kodeBuku' => request('kodeBuku'),
+                'judul' => request('judul'),
+                'penulis' => request('penulis'),
+                'penerbit' => request('penerbit'),
+                'tahunTerbit' => request('tahunTerbit'),
+                'kodeRak' => request('kodeRak'),
+                'kodeKolom' => request('kodeKolom'),
+                'platform_id' => request('platform_id'),
+                'pemrograman_id' => request('pemrograman_id'),
+                'stok' => request('stok')
+            ]);
+        }
+
+        return redirect()->route('buku.view');
     }
 }
