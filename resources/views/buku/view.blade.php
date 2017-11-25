@@ -20,20 +20,23 @@
                     </tr>
                     </thead>
                     <tbody>
+
                         @foreach($bukus as $buku)
                     <tr>
-                            <td></td>
+                            <td>{{ $loop->index + 1 }}</td>
                             <td width="16%">{{ $buku->judul }}</td>
                             <td width="16%">{{ $buku->penulis }}</td>
                             <td width="16%">{{ $buku->penerbit }}</td>
                             <td width="16%">{{ $buku->tahunTerbit }}</td>
-                            <td width="16%"><img width="35%" src="{{ asset($buku->gambar) }}"></td>
+                            <td width="16%"><img width="80%" height="50%" src="{{ asset('buku_gambar/'.$buku->gambar) }}"></td>
                             <td width="16%">
-                                <a href=""
+                                <a href="{{ route('buku.edit', $buku->kodeBuku) }}"
                                    class="btn-primary btn-sm">Edit</a>
-                                <a onclick="return confirm('Yakin untuk Hapus Data ?')"
-                                   href=""
-                                   class="btn-danger btn-sm">Hapus</a>
+                                <form class="" action="{{ route('buku.destroy', $buku->kodeBuku)}}" method="post">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" name="button" class="btn btn-danger btn-xs">Hapus</button>
+                                </form>
                             </td>
                     </tr>
                         @endforeach
