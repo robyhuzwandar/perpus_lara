@@ -7,6 +7,7 @@ use App\Pemrograman;
 use App\Platform;
 use App\Buku;
 use File;
+use Illuminate\Support\Facades\DB;
 
 class BukuController extends Controller
 {
@@ -22,18 +23,15 @@ class BukuController extends Controller
 
     public function store(Request $request)
     {
-        request()->validate([
-
+        $request->validate([
+            'kodeBuku'=> 'required|unique:buku,kodeBuku',
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ]);
 
 
         $gambar = time() . '.' . request()->gambar->getClientOriginalExtension(); //namagambar
-
         request()->gambar->move(public_path('buku_gambar'), $gambar); //memindahkan gambar kefolder
-
-
         Buku::create([
             'kodeBuku' => request('kodeBuku'),
             'judul' => request('judul'),
@@ -48,13 +46,20 @@ class BukuController extends Controller
             'stok' => request('stok')
         ]);
 
-        return redirect()->route('buku.view');
+        return redirect()->route('buku.index');
     }
 
-    public function view()
+    public function index()
     {
-        $bukus = Buku::all();
-        return view('buku.view', compact('bukus'));
+//        $bukus = Buku::all()->with('pemrograman.platform')->get();
+        $bukus = DB::table('buku')
+            ->join('pemrograman', 'pemrograman.id', '=', 'buku.pemrograman_id')
+            ->join('platform', 'platform.id', '=', 'buku.platform_id')
+            ->select('buku.*', 'pemrograman.nama as pem', 'platform.nama')
+            ->get();
+
+
+        return view('buku.index', compact('bukus'));
     }
 
     public function destroy(Request $request)
@@ -69,7 +74,6 @@ class BukuController extends Controller
     public function edit($kodeBuku)
     {
         $buku = Buku::find($kodeBuku);
-
         $pemrogramans = Pemrograman::all();
         $platforms = Platform::all();
         return view('buku.edit', compact('buku', 'pemrogramans', 'platforms'));

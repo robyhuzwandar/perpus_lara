@@ -131,7 +131,7 @@ class ConsoleLoggerTest extends TestCase
     {
         return array(
             LogLevel::EMERGENCY => array(LogLevel::EMERGENCY, 'message of level emergency with context: {user}'),
-            LogLevel::ALERT => array(LogLevel::ALERT, 'message of level alert with context: {user}'),
+            LogLevel::ALERT => array(LogLevel::ALERT, 'message of level layouts with context: {user}'),
             LogLevel::CRITICAL => array(LogLevel::CRITICAL, 'message of level critical with context: {user}'),
             LogLevel::ERROR => array(LogLevel::ERROR, 'message of level error with context: {user}'),
             LogLevel::WARNING => array(LogLevel::WARNING, 'message of level warning with context: {user}'),

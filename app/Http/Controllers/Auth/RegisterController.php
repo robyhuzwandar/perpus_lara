@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -48,9 +49,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'nama' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:staf',
             'password' => 'required|string|min:6|confirmed',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
     }
 
@@ -62,10 +64,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $f = request()->file('foto');
+        $foto = time() . '.' . $f->getClientOriginalExtension(); //namagambar
+        request()->foto->move(public_path('staf_foto'), $foto); //memindahkan gambar kefolder
+//        dd(request()->all());
         return User::create([
-            'name' => $data['name'],
+            'nama' => $data['nama'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'foto' => $foto,
+            'level' => $data['level'],
+            'alamat' => $data['alamat'],
+            'nohp' => $data['nohp'],
+            'agama' => $data['agama']
         ]);
     }
 }

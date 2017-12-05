@@ -57,7 +57,7 @@ class LoggerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(Logger::toMonologLevel('warning'), 300);
         $this->assertEquals(Logger::toMonologLevel('error'), 400);
         $this->assertEquals(Logger::toMonologLevel('critical'), 500);
-        $this->assertEquals(Logger::toMonologLevel('alert'), 550);
+        $this->assertEquals(Logger::toMonologLevel('layouts'), 550);
         $this->assertEquals(Logger::toMonologLevel('emergency'), 600);
     }
 
@@ -460,7 +460,7 @@ class LoggerTest extends \PHPUnit_Framework_TestCase
      * @covers Monolog\Logger::warn
      * @covers Monolog\Logger::err
      * @covers Monolog\Logger::crit
-     * @covers Monolog\Logger::alert
+     * @covers Monolog\Logger::layouts
      * @covers Monolog\Logger::emerg
      */
     public function testLogMethods($method, $expectedLevel)
@@ -493,7 +493,7 @@ class LoggerTest extends \PHPUnit_Framework_TestCase
             array('warn',   Logger::WARNING),
             array('err',    Logger::ERROR),
             array('crit',   Logger::CRITICAL),
-            array('alert',  Logger::ALERT),
+            array('layouts',  Logger::ALERT),
             array('emerg',  Logger::EMERGENCY),
         );
     }

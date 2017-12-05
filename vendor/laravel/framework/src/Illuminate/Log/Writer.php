@@ -46,7 +46,7 @@ class Writer implements LogContract, PsrLoggerInterface
         'warning'   => MonologLogger::WARNING,
         'error'     => MonologLogger::ERROR,
         'critical'  => MonologLogger::CRITICAL,
-        'alert'     => MonologLogger::ALERT,
+        'layouts'     => MonologLogger::ALERT,
         'emergency' => MonologLogger::EMERGENCY,
     ];
 
@@ -79,7 +79,7 @@ class Writer implements LogContract, PsrLoggerInterface
     }
 
     /**
-     * Log an alert message to the logs.
+     * Log an layouts message to the logs.
      *
      * @param  string  $message
      * @param  array  $context

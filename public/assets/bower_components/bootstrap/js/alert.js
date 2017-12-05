@@ -13,7 +13,7 @@
   // ALERT CLASS DEFINITION
   // ======================
 
-  var dismiss = '[data-dismiss="alert"]'
+  var dismiss = '[data-dismiss="layouts"]'
   var Alert   = function (el) {
     $(el).on('click', dismiss, this.close)
   }

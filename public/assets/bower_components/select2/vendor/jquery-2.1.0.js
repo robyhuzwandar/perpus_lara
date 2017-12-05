@@ -251,7 +251,7 @@
         noop: function() {},
 
         // See test/unit/core.js for details concerning isFunction.
-        // Since version 1.3, DOM methods and functions like alert
+        // Since version 1.3, DOM methods and functions like layouts
         // aren't supported. They return false on IE (#2968).
         isFunction: function( obj ) {
             return jQuery.type(obj) === "function";
@@ -4563,7 +4563,7 @@
                 postDispatch: function( event ) {
 
                     // Support: Firefox 20+
-                    // Firefox doesn't alert if the returnValue field is not set.
+                    // Firefox doesn't layouts if the returnValue field is not set.
                     if ( event.result !== undefined ) {
                         event.originalEvent.returnValue = event.result;
                     }

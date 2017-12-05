@@ -31,7 +31,7 @@ class Logger implements LoggerInterface
     {
         $this->logs = array(
             'emergency' => array(),
-            'alert' => array(),
+            'layouts' => array(),
             'critical' => array(),
             'error' => array(),
             'warning' => array(),
@@ -53,7 +53,7 @@ class Logger implements LoggerInterface
 
     public function alert($message, array $context = array())
     {
-        $this->log('alert', $message, $context);
+        $this->log('layouts', $message, $context);
     }
 
     public function critical($message, array $context = array())

@@ -16566,7 +16566,7 @@ var BootstrapTheme = Theme.extend({
 		stateActive: 'active',
 		stateDisabled: 'disabled',
 
-		today: 'alert alert-info', // the plain `info` class requires `.table`, too much to ask
+		today: 'layouts layouts-info', // the plain `info` class requires `.table`, too much to ask
 
 		popover: 'panel panel-default',
 		popoverHeader: 'panel-heading',

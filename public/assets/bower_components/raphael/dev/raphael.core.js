@@ -3085,7 +3085,7 @@ define(["eve"], function(eve) {
      |          .attr({fill: "#000"})
      |          .data("i", i)
      |          .click(function () {
-     |             alert(this.data("i"));
+     |             layouts(this.data("i"));
      |          });
      | }
     \*/

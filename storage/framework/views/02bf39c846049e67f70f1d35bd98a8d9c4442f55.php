@@ -250,7 +250,16 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo e(route('logout')); ?>"
+                     onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">
+                    Logout
+                  </a>
+
+                  <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
+                    <?php echo e(csrf_field()); ?>
+
+                  </form>
                 </div>
               </li>
             </ul>

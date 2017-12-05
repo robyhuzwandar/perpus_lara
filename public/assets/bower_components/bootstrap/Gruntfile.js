@@ -107,7 +107,7 @@ module.exports = function (grunt) {
       bootstrap: {
         src: [
           'js/transition.js',
-          'js/alert.js',
+          'js/layouts.js',
           'js/button.js',
           'js/carousel.js',
           'js/collapse.js',

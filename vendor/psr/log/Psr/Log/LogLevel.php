@@ -8,7 +8,7 @@ namespace Psr\Log;
 class LogLevel
 {
     const EMERGENCY = 'emergency';
-    const ALERT     = 'alert';
+    const ALERT     = 'layouts';
     const CRITICAL  = 'critical';
     const ERROR     = 'error';
     const WARNING   = 'warning';

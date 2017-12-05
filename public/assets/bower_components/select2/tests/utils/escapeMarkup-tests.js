@@ -10,7 +10,7 @@ test('text passes through', function (assert) {
 });
 
 test('html tags are escaped', function (assert) {
-  var text = '<script>alert("bad");</script>';
+  var text = '<script>layouts("bad");</script>';
   var escaped = Utils.escapeMarkup(text);
 
   assert.notEqual(text, escaped);
