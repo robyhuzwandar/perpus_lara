@@ -71,7 +71,19 @@
                 </ul>
             </li>
 
-            <li class="treeview">
+            <li class="treeview {{ set_active(['member.create']) }}">
+                <a href="#">
+                    <i class="fa fa-laptop"></i>
+                    <span>Member</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ set_active('member.create') }}"><a href="{{ route('member.create') }}"><i class="fa fa-circle-o"></i>Add member</a></li>
+{{--                    <li class="{{ set_active('member.index') }}"><a href="{{ route('member.index') }}"><i class="fa fa-circle-o"></i>List member</a></li>--}}
+                </ul>
+            </li>
+
+            <li class="treeview {{ set_active(['transaksi.peminjaman', 'pengembalian']) }}">
                 <a href="#">
                     <i class="fa fa-laptop"></i>
                     <span>Transaksi</span>
@@ -80,9 +92,8 @@
           </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('platform.create') }}"><i class="fa fa-circle-o"></i>Peminjaman</a>
-                    </li>
-                    <li><a href="{{ route('platform.index') }}"><i class="fa fa-circle-o"></i>Pengembalian</a></li>
+                    {{--<li class="{{ set_active('transaksi.peminjaman') }}"><a href="{{ route('transaksi.peminjaman') }}"><i class="fa fa-circle-o"></i>Peminjaman</a></li>--}}
+                    {{--<li class="{{ set_active('pengembalian') }}"><a href="{{ route('pengembalian') }}"><i class="fa fa-circle-o"></i>Pengembalian</a></li>--}}
                 </ul>
             </li>
 

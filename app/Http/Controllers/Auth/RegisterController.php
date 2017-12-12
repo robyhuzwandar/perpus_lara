@@ -50,7 +50,10 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'nama' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:staf',
+            'alamat' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
+            'agama' => 'required|string|max:255',
+            'nohp' => 'required|string|email|max:255|unique:staf',
             'password' => 'required|string|min:6|confirmed',
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);

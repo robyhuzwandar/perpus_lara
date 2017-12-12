@@ -39,8 +39,14 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/platform/{platform}/edit', 'PlatformController@edit')->name('platform.edit');
     Route::patch('/platform/{platform}/edit', 'PlatformController@update')->name('platform.update');
 
+    Route::get('/member/create', 'MemberController@create')->name('member.create');
+    Route::post('/member/create', 'MemberController@store')->name('member.store');
+    Route::get('/member/{id}/edit', 'MemberController@edit')->name('member.edit');
+    Route::patch('/member/{id}/edit', 'MemberController@update')->name('member.update');
 
 
+//    Route::get('/transaksi/peminjaman', 'PeminjamanController@create')->name('transaksi.peminjaman');
+//    Route::get('/transaksi/pengembalian', 'PengembalianController@create')->name('pengembalian.create');
 });
 
 

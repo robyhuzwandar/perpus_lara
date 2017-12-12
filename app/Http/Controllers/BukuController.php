@@ -24,11 +24,10 @@ class BukuController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kodeBuku'=> 'required|unique:buku,kodeBuku',
+            'kodeBuku' => 'required|unique:buku,kodeBuku',
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ]);
-
 
         $gambar = time() . '.' . request()->gambar->getClientOriginalExtension(); //namagambar
         request()->gambar->move(public_path('buku_gambar'), $gambar); //memindahkan gambar kefolder
@@ -51,7 +50,6 @@ class BukuController extends Controller
 
     public function index()
     {
-//        $bukus = Buku::all()->with('pemrograman.platform')->get();
         $bukus = DB::table('buku')
             ->join('pemrograman', 'pemrograman.id', '=', 'buku.pemrograman_id')
             ->join('platform', 'platform.id', '=', 'buku.platform_id')
